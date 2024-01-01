@@ -1,0 +1,11 @@
+sort1 uses: Bubble Sort
+
+How do you know?: Bubble sort algorithm has the worst performance on reversed data. And after comparing with other 2 algorithms, the longest time was recorded for that
+
+sort2 uses: Merge Sort
+
+How do you know?: Merge sort algorithm has the best performance on reversed data. And after comparing with other 2 algorithms, the shortest time was recorded for that
+
+sort3 uses: Selection Sort
+
+How do you know?: After two other types of algorithms were identified, this was the only algorithm left. On the other hand, in terms of time, this algorithm performed between the other two algorithms

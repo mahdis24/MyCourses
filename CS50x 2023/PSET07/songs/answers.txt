@@ -1,0 +1,10 @@
+According to the data extracted from the database,
+if the energy level for a person is high, that person can be interested in trance or sports songs,
+and if the loudness level is high, that person is interested in calm and relaxing songs.
+and other analyzes similar to those mentioned above!
+
+In my opinion, paying attention to only one of the indicators,
+or paying attention to several of them separately,
+cannot really express what kind of musical taste the user has.
+An algorithm should be developed that is based on a combination of considering all these indicatorsو
+and can analyze the user's musical taste.

@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}Insert{% endblock %}
+
+{% block main %}
+<h1 class="mb-5">Insert</h1>
+<form action="/insert" method="post" class="text-start">
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">S/N</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="serial" name="serial" value="{{ serial }}" disabled
+                selected required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Ticket Ref</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="ref" name="ref" placeholder="Reference"
+                type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Device</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="device" name="device" class="form-control" required>
+                <option value="" disabled selected>Model</option>
+                <option value="1G">1G</option>
+                <option value="1E">1E</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Subscription Type</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="subtype" name="subtype" class="form-control" required>
+                <option value="" disabled selected>Type</option>
+                <option value="Enterprise">Enterprise</option>
+                <option value="Premium">Premium</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Expenditure Type</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="exptype" name="exptype" class="form-control" required>
+                <option value="" disabled selected>Type</option>
+                <option value="CAPEX">CAPEX</option>
+                <option value="OPEX">OPEX</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Expiration Date</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="expiry" name="expiry" placeholder="#" type="date"
+                required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Client</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="client" name="client" class="form-control" required>
+                <option value="" disabled selected>client</option>
+                {% for row in client_db %}
+                <option value="{{ row['name'] }}">{{ row['name'] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Addendum</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="add" name="add" placeholder="Device" type="text"
+                required>
+        </div>
+    </div>
+    <div class="mt-5 text-center">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

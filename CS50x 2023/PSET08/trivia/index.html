@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+
+                // ------> PART 1 <------
+                let options = document.querySelectorAll('button.option');
+                for (let i = 0; i < options.length; i++) {
+                    options[i].addEventListener('click', function(event) {
+                        for (let j = 0; j < options.length; j++) {
+                            options[j].style.backgroundColor = '#d9edff';
+                            options[j].style.color = 'black';
+                        }
+
+                        if (options[i].id && options[i].id == "correct_option") {
+                            options[i].style.backgroundColor = 'green';
+                            document.querySelector('#result_1').innerHTML = 'Correct!';
+                        } else {
+                            options[i].style.backgroundColor = 'red';
+                            document.querySelector('#result_1').innerHTML = 'Incorrect! Try again!';
+                        }
+                        options[i].style.color = 'white';
+                    });
+                }
+
+                // ------> PART 2 <------
+                document.querySelector('button#check_btn').addEventListener('click', function() {
+                    let input = document.querySelector('input');
+                    if (input.value.toLowerCase() == 'mercury') {
+                        input.style.backgroundColor = 'green';
+                        document.querySelector('#result_2').innerHTML = 'Correct!';
+                    } else {
+                        input.style.backgroundColor = 'red';
+                        document.querySelector('#result_2').innerHTML = 'Incorrect! Try Again';
+                    }
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <h3>In what year was Harvard University founded?</h3>
+                <button class="option">1936</button>
+                <button class="option">1764</button>
+                <button class="option" id="correct_option">1636</button>
+                <button class="option">1860</button>
+                <p id="result_1"></p>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>What is the closest planet to the sun?</h3>
+                <input type='text'></input>
+                <button id="check_btn">Check Answer</button>
+                <p id="result_2"></p>
+            </div>
+        </div>
+    </body>
+
+</html>

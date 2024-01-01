@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Orders
+{% endblock %}
+
+{% block main %}
+<h1 class="mb-5">Orders</h1>
+<form action="/orders" method="post">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-start">ID</th>
+                    <th class="text-start">Serial Number</th>
+                    <th class="text-center">Device</th>
+                    <th class="text-center">Ticket Ref</th>
+                    <th class="text-center">Sub Type</th>
+                    <th class="text-center">Expense Type</th>
+                    <th class="text-center">Expiry Date</th>
+                    <th class="text-center">Expired in</th>
+                    <th class="text-center">Client</th>
+                    <th class="text-center">Addendum</th>
+                    <th class="text-center">Created at</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in database %}
+                <tr>
+                    <td class="text-start">{{ row["id"] }}</td>
+                    <td class="text-start">{{ row["serial_num"] }}</td>
+                    <td class="text-center">{{ row["Device"] }}</td>
+                    <td class="text-center">{{ row["ticket_ref"] }}</td>
+                    <td class="text-center">{{ row["subs_type"] }}</td>
+                    <td class="text-center">{{ row["expense_type"] }}</td>
+                    <td class="text-center">{{ row["expiry"] }}</td>
+                    <td class="text-center"
+                        style="color: {% if 0 <= row['expiration'] <= 30 %}darkorange{% elif row['expiration'] < 0 %}red{% else %}black{% endif %};">
+                        {{ row["expiration"] }} days
+                    </td>
+                    <td class="text-center">{{ row["client"] }}</td>
+                    <td class="text-center">{{ row["Addendum"] }}</td>
+                    <td class="text-center">{{ row["created_at"] }}</td>
+                    <td>
+                        <form action="{{ url_for('edit') }}" method="GET">
+                            <input type="hidden" name="id" value="{{ row['id'] }}" />
+                            <input type="submit" value="edit" />
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination_section d-flex justify-content-center mt-3">
+        <ul class="pagination">
+            {% if page > 1 %}
+            <li>
+                <a class="page-link" href="/orders?page={{ page - 1 }}">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            {% endif %}
+
+            {% for p in range(1, total_pages + 1) %}
+            <li class="page-item {% if p == page %}active{% endif %}">
+                <a class="page-item"><a class="page-link" href="/orders?page={{ p }}">{{ p }}</a>
+            </li>
+            {% endfor %}
+
+            {% if page < total_pages %} <li>
+                <a class="page-link" href="/orders?page={{ page + 1 }}">Next</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+                {% endif %}
+        </ul>
+    </div>
+
+    <p>
+        Total Items: {{ total_items }}
+        <span class="spacer"></span>
+        Items Per Page: {{ items_per_page }}
+    </p>
+</form>
+
+{% endblock %}

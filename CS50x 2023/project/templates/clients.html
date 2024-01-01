@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Client List
+{% endblock %}
+
+{% block main %}
+<h1 class="mb-5">Clients</h1>
+<form action="/clients" method="post">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th class="text-start">ID</th>
+                    <th class="text-start">Name</th>
+                    <th class="text-center">Contact number</th>
+                    <th class="text-center">Address</th>
+                    <th class="text-center">Country</th>
+                    <th class="text-center">City</th>
+                    <th class="text-center">State</th>
+                    <th class="text-center">Postal Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in database %}
+                <tr>
+                    <th class="text-start">{{ row["id"] }}</th>
+                    <td class="text-start">{{ row["name"] }}</td>
+                    <td class="text-center">{{ row["contact_no"] }}</td>
+                    <td class="text-center">{{ row["address"] }}</td>
+                    <td class="text-center">{{ row["country"] }}</td>
+                    <td class="text-center">{{ row["city"] }}</td>
+                    <td class="text-center">{{ row["state"] }}</td>
+                    <td class="text-center">{{ row["postal_code"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </main>
+
+    {% endblock %}

@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}Edit{% endblock %}
+
+{% block main %}
+<h1 class="mb-5">Edit</h1>
+<form action="/edit" method="post" class="text-start">
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">S/N</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="serial" name="serial" value="{{ info['serial_num'] }}"
+                readonly required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Ticket Ref</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="ref" name="ref"
+                value="{{ info['ticket_ref'] }}" type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Device</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="device" name="device" class="form-control" required>
+                <option value="" disabled>Model</option>
+                <option value="1G" {% if info['Device']=='1G' %} selected {% endif %}>1G</option>
+                <option value="1E" {% if info['Device']=='1E' %} selected {% endif %}>1E</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Subscription Type</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="subtype" name="subtype" class="form-control" required>
+                <option value="" disabled>Type</option>
+                <option value="Enterprise" {% if info['subs_type']=='Enterprise' %} selected {% endif %}>Enterprise
+                </option>
+                <option value="Premium" {% if info['subs_type']=='Premium' %} selected {% endif %}>Premium</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Expenditure Type</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="exptype" name="exptype" class="form-control" required>
+                <option value="" disabled>Type</option>
+                <option value="CAPEX" {% if info['expense_type']=='CAPEX' %} selected {% endif %}>CAPEX</option>
+                <option value="OPEX" {% if info['expense_type']=='OPEX' %} selected {% endif %}>OPEX</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Expiration Date</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="expiry" name="expiry" value="{{ formatted_date }}"
+                type="date" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Client</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="client" name="client" class="form-control" type="text"
+                required>
+                <option value="" disabled>Client</option>
+                {% for c in client_db %}
+                <option value="{{ c['name'] }}" {% if info['client']==c['name'] %} selected {% endif %}>{{ c['name'] }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Addendum</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" class="form-control" id="add" name="add" placeholder="Device"
+                value="{{ info['Addendum'] }}" type="text" required>
+        </div>
+    </div>
+    <div class="mt-5 text-center">
+        <input type="hidden" name="id" value="{{ info['id'] }}" />
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

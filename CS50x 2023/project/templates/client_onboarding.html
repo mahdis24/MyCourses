@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}Client Onboarding{% endblock %}
+
+{% block main %}
+<h1 class="mb-5">Onboarding</h1>
+<form action="/onboarding" method="post" class="text-start">
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Client Name</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="client_name" name="client_name"
+                placeholder="name" type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Contact No.</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="contact_no" name="contact_no"
+                placeholder="contact number" type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Address</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="address" name="address" placeholder="address"
+                type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Country</label>
+        <div class="col-sm-2">
+            <select class="dropdown-toggle form-select" id="country" name="country" autofocus class="form-control"
+                required>
+                <option value="" disabled selected>select country</option>
+                {% for country in countries %}
+                <option value="{{ country }}">{{ country }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">City</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="city_name" name="city_name"
+                placeholder="City name" type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">State</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="state" name="state" placeholder="state"
+                type="text" required>
+        </div>
+    </div>
+    <div class="mb-3 form-group row justify-content-center">
+        <label for="symbol" class="col-sm-1 col-form-label">Postal code</label>
+        <div class="col-sm-2">
+            <input autocomplete="off" autofocus class="form-control" id="postal_code" name="postal_code"
+                placeholder="e.g: 98859" type="text" required>
+        </div>
+    </div>
+    <div class="mt-5 text-center">
+        <button class="btn btn-primary" type="submit">Insert</button>
+    </div>
+</form>
+{% endblock %}
